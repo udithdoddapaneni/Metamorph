@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://du8xebvldwux4"]
+
+[ext_resource type="Texture2D" uid="uid://dtvcrqxp3fl01" path="res://assets/craftpix-net-965049-free-industrial-zone-tileset-pixel-art/1 Tiles/IndustrialTile_05.png" id="1_seon0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p34hp"]
+size = Vector2(102, 34)
+
+[node name="Node2D" type="CharacterBody2D"]
+position = Vector2(286, 245)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(46, 4)
+shape = SubResource("RectangleShape2D_p34hp")
+
+[node name="IndustrialTile05" type="Sprite2D" parent="."]
+position = Vector2(45.5, 4)
+scale = Vector2(3.15625, 1)
+texture = ExtResource("1_seon0")

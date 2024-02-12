@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://ccef36sxa7oel"]
+
+[ext_resource type="Texture2D" uid="uid://bfw5kknplfub8" path="res://assets/metapod.png" id="1_2yjy7"]
+[ext_resource type="Script" path="res://player.gd" id="1_q4l8w"]
+[ext_resource type="Texture2D" uid="uid://d3g700l8tmrkr" path="res://assets/caterpie.png" id="2_he3nl"]
+[ext_resource type="Texture2D" uid="uid://dey7nixagx7t6" path="res://assets/bosswasp2.png" id="4_6r7do"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tehnx"]
+radius = 35.0
+height = 98.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88m6m"]
+atlas = ExtResource("2_he3nl")
+region = Rect2(60, 58, 70, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lg5rr"]
+atlas = ExtResource("1_2yjy7")
+region = Rect2(60, 53, 70, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vqqi"]
+atlas = ExtResource("4_6r7do")
+region = Rect2(10, 0, 82, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dd4xm"]
+atlas = ExtResource("4_6r7do")
+region = Rect2(122, 0, 82, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjhm2"]
+atlas = ExtResource("4_6r7do")
+region = Rect2(234, 0, 82, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qtobu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88m6m")
+}],
+"loop": true,
+"name": &"caterpie",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lg5rr")
+}],
+"loop": true,
+"name": &"cocoon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vqqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dd4xm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjhm2")
+}],
+"loop": true,
+"name": &"fly_mode",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_q4l8w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, -18)
+shape = SubResource("CapsuleShape2D_tehnx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-11, -6)
+scale = Vector2(0.891223, 1.02055)
+sprite_frames = SubResource("SpriteFrames_qtobu")
+animation = &"caterpie"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

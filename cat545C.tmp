@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://w22pw6opqbyq"]
+
+[ext_resource type="Script" path="res://caterpie.gd" id="1_434s0"]
+[ext_resource type="Texture2D" uid="uid://cye6n0kdqq7ct" path="res://caterpie.png" id="2_xhew4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7wrcy"]
+radius = 22.0
+height = 56.0
+
+[node name="caterpie" type="CharacterBody2D"]
+position = Vector2(446, -61)
+script = ExtResource("1_434s0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-11, -47)
+shape = SubResource("CapsuleShape2D_7wrcy")
+
+[node name="Caterpie" type="Sprite2D" parent="."]
+position = Vector2(-10, -42)
+scale = Vector2(0.519531, 0.539583)
+texture = ExtResource("2_xhew4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-9, -41)
+scale = Vector2(-145.858, -30.5775)
+zoom = Vector2(2, 2)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-34, -43)

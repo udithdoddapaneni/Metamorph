@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://d38wfj5d78yn3"]
+
+[ext_resource type="Script" path="res://path_2d.gd" id="1_fnhob"]
+[ext_resource type="Texture2D" uid="uid://dtvcrqxp3fl01" path="res://assets/craftpix-net-965049-free-industrial-zone-tileset-pixel-art/1 Tiles/IndustrialTile_05.png" id="2_ewcrq"]
+
+[sub_resource type="Curve2D" id="Curve2D_mipsp"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 7, -201, 0, 0, 0, 0, 11, -15, 0, 0, 0, 0, 16, 8, 0, 0, 0, 0, 11, 9, 0, 0, 0, 0, 8, -203)
+}
+point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jb425"]
+size = Vector2(62, 17)
+
+[node name="platformy" type="Path2D"]
+position = Vector2(370, 400)
+curve = SubResource("Curve2D_mipsp")
+script = ExtResource("1_fnhob")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(8, -203)
+progress = 770.0
+rotates = false
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="PathFollow2D"]
+position = Vector2(-17, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/CharacterBody2D"]
+position = Vector2(21, 0.5)
+shape = SubResource("RectangleShape2D_jb425")
+
+[node name="IndustrialTile05" type="Sprite2D" parent="PathFollow2D/CharacterBody2D"]
+position = Vector2(20.9983, 0.424713)
+rotation = -0.00907501
+scale = Vector2(1.92997, 0.5)
+texture = ExtResource("2_ewcrq")

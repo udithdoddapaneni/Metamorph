@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bry6g5arbhtps"]
+
+[ext_resource type="Texture2D" uid="uid://bg3gl1ifnhirf" path="res://assets/craftpix-net-753737-free-green-zone-tileset-pixel-art/3 Objects/Other/Tree4.png" id="1_4ex2a"]
+[ext_resource type="Script" path="res://goal.gd" id="1_opdna"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hkwci"]
+size = Vector2(75, 116)
+
+[node name="Goal" type="Area2D"]
+script = ExtResource("1_opdna")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(344.5, 305)
+shape = SubResource("RectangleShape2D_hkwci")
+
+[node name="Tree4" type="Sprite2D" parent="."]
+position = Vector2(341.75, 302)
+scale = Vector2(0.391429, 0.589474)
+texture = ExtResource("1_4ex2a")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,105 @@
+[gd_scene load_steps=14 format=3 uid="uid://dbwvxm7jaicn0"]
+
+[ext_resource type="Script" path="res://Enemy beetle.gd" id="1_edsag"]
+[ext_resource type="Texture2D" uid="uid://ckeynu8q4qwc2" path="res://assets/bossbeetle.png" id="2_uvwqi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eegef"]
+size = Vector2(43, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u660q"]
+atlas = ExtResource("2_uvwqi")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdl14"]
+atlas = ExtResource("2_uvwqi")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qr77"]
+atlas = ExtResource("2_uvwqi")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6phf"]
+atlas = ExtResource("2_uvwqi")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gpap"]
+atlas = ExtResource("2_uvwqi")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8a31e"]
+atlas = ExtResource("2_uvwqi")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb4ks"]
+atlas = ExtResource("2_uvwqi")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_scdjw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u660q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdl14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qr77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6phf")
+}],
+"loop": true,
+"name": &"attacking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gpap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8a31e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb4ks")
+}],
+"loop": true,
+"name": &"normal",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4lp8"]
+size = Vector2(178.75, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyf6i"]
+size = Vector2(43, 28)
+
+[node name="Enemy beetle" type="CharacterBody2D"]
+position = Vector2(-22, 46)
+script = ExtResource("1_edsag")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9.5, 5)
+shape = SubResource("RectangleShape2D_eegef")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-10, -2.87499)
+scale = Vector2(0.65625, 0.691407)
+sprite_frames = SubResource("SpriteFrames_scdjw")
+animation = &"normal"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(79.625, -2)
+shape = SubResource("RectangleShape2D_v4lp8")
+
+[node name="killer_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killer_area"]
+position = Vector2(-8.5, 4)
+shape = SubResource("RectangleShape2D_xyf6i")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="killer_area" to="." method="_on_killer_area_body_entered"]
